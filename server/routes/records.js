@@ -1,0 +1,75 @@
+import express from 'express';
+
+// For handling data type conv from _id
+import mongodb from "mongodb";
+const { ObjectId } = mongodb;
+
+// Database connection
+import db from "../db/connection.js";
+
+
+const router = express.Router();
+
+// Post using api to initially save menu to db
+router.post('/', async (req, res) => {
+  try {
+    console.log('Received menuData:', req.body);
+    const collection = db.collection('records');
+    const result = await collection.insertOne(req.body);
+    res.status(201).send(result);
+  } catch (err) {
+    res.status(500).send({ error: 'Failed to save menu' });
+  }
+});
+
+// standard get for all records
+router.get("/", async (req, res) => {
+let collection = await db.collection("records");
+let results = await db.collection("records").find({}).toArray();
+res.send(results).status(200);
+});
+
+// standard get for one record by id
+router.get("/:id", async (req, res) => {
+  let collection = await db.collection("records");
+  let result = await collection.findOne({ _id: new ObjectID(req.params.id) });
+    if (!result) res.send("Not found").status(404);
+    else res.send(result).status(200);
+});
+
+// standard post to add a record
+router.post("/", async (req, res) => {
+  let collection = await db.collection("records"); 
+    let result = await collection.insertOne(req.body);
+    res.send(result).status(201);
+});
+
+// standard put to update a record by id (incomplete until dat struc is clear)
+router.put("/:id", async (req, res) => {
+    try{
+        const query = { _id: new ObjectID(req.params.id) };
+        const update = {
+            $set: req.body
+        };
+        const collection = await db.collection("records");
+        let result = await collection.updateOne(query, update);
+        res.send(result).status(200);
+    } catch (error) {
+        res.status(500).send("Error updating record");  
+        }
+});
+
+// standard delete to delete a record by id
+router.delete("/:id", async (req, res) => {
+    try{
+        const collection = await db.collection("records");
+        const query = { _id: new ObjectID(req.params.id) };
+        let result = await collection.deleteOne(query);
+    
+    res.send(result).status(200);
+    } catch (error) {
+        res.status(500).send("Error deleting record");
+    }
+});
+
+export default router;

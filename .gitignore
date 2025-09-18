@@ -1,7 +1,6 @@
 node_modules/
 build/
 dist/
-server/
 docker-compose.yaml
 .env
 .DS_Store
@@ -10,3 +9,4 @@ client/node_modules/
 client/styles/
 client/services
 client/src/components/EditJsonTree.js
+server/package-lock.json
