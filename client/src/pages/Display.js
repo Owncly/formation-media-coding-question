@@ -3,6 +3,7 @@ import BottomNav from '../components/BottomNav.js';
 import JsonTree from '../components/JsonTree.js';
 
 export default function Display() {
+  // Set initial state 
   const [menuData, setMenuData] = useState(null);
   // Awaiting data from backend
   useEffect(() => {
@@ -23,8 +24,9 @@ export default function Display() {
   return (
     <>
       <h1>Display Page</h1>
-      <BottomNav />
       {menuData ? <JsonTree jsonData={menuData} /> : <div>Please Wait, loading...</div>}
+      <BottomNav />
+      
     </>
   );
 }

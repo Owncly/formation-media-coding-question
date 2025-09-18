@@ -5,7 +5,7 @@ const TreeNode = ({ node }) => {
   const [collapsed, setCollapsed] = useState(false);
 
 
-  const hasChildren = Array.isArray(node.submenu);
+  const hasBranch = Array.isArray(node.submenu);
 
   // Function to toggle collapse state
   const toggleState = () => setCollapsed(!collapsed);
@@ -14,9 +14,9 @@ const TreeNode = ({ node }) => {
     <div>
       <span onClick={toggleState}>
         {/* If children print name and assign collapsed, if not use • */}
-        {hasChildren ? (collapsed ? '[+]' : '[-]') : '•'} {node.title}
+        {hasBranch ? (collapsed ? '[+]' : '[-]') : '•'} {node.title}
       </span>
-      {!collapsed && hasChildren && (
+      {!collapsed && hasBranch && (
         <div style={{ marginLeft: 20 }}>
           {node.submenu.map((child, index) => (
             <TreeNode key={index} node={child} />
