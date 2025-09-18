@@ -44,19 +44,19 @@ router.post("/", async (req, res) => {
     res.send(result).status(201);
 });
 
-// standard put to update a record by id (incomplete until dat struc is clear)
-router.put("/:id", async (req, res) => {
-    try{
-        const query = { _id: new ObjectID(req.params.id) };
-        const update = {
-            $set: req.body
-        };
-        const collection = await db.collection("records");
-        let result = await collection.updateOne(query, update);
-        res.send(result).status(200);
-    } catch (error) {
-        res.status(500).send("Error updating record");  
-        }
+
+router.put('/:id', async (req, res) => {
+  try {
+    const collection = db.collection('records');
+    const result = await collection.updateOne(
+      { _id: new ObjectId(req.params.id) },
+      { $set: req.body }
+    );
+    res.status(200).send(result);
+  } catch (err) {
+    console.error('Update failed:', err);
+    res.status(500).send({ error: 'Failed to update menu' });
+  }
 });
 
 // standard delete to delete a record by id
