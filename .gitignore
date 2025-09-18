@@ -1,0 +1,9 @@
+node_modules/
+build/
+dist/
+server/
+docker-compose.yaml
+.env
+.DS_Store
+client/.env
+client/node_modules/
