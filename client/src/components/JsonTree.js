@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import '../styles/JsonTree.css';
 const TreeNode = ({ node }) => {
 // State to set collapsed or expanded
   const [collapsed, setCollapsed] = useState(false);
@@ -27,9 +27,10 @@ const TreeNode = ({ node }) => {
   );
 };
 // Display component with menu header
+
 const JsonTreeViewer = ({ jsonData }) => {
   return (
-    <div>
+    <div className="json-tree-viewer"> {/* Adding class for individual Styling */}
       <h3>Menu</h3>
       {jsonData.menu.map((item, index) => (
         <TreeNode key={index} node={item} />

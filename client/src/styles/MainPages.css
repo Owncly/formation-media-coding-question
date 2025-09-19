@@ -1,0 +1,26 @@
+.display-page {
+  display: block;
+  flex-direction: column;
+  padding: 2px;
+  background-color: #f0f2f5;
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding-bottom: 40px; /* Prevent overlap with BottomNav */
+}
+
+.display-page h1 {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #2c3e50;
+  margin-bottom: 24px;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+.loading {
+  font-size: 1.2rem;
+  color: #555;
+  margin-top: 20px;
+  text-align: center;
+  font-style: italic;
+}

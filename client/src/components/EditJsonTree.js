@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import externalMenuService from '../services/externalMenuService';
 import internalMenuService from '../services/internalMenuService';
-import '../styles/JsonTree.css';
+import '../styles/EditJsonTree.css';
+import { FaPencilAlt, FaArrowUp, FaArrowDown, FaIndent, FaOutdent, FaTrash } from 'react-icons/fa';
 
 // Generating unique IDs to keep correct track across state of the tree elements. Prefix used to help see structure
 let idCounter = 0;
@@ -116,13 +117,14 @@ const JsonTree = ({
     updateGrandParent(updatedGrandParent);
   };
 
-  return (
-    <div>
-      <span onClick={toggleState}>
-        {Array.isArray(item.submenu)
-          ? (collapsed ? '[+]' : '[-]')
-          : '•'}
+
+return (
+  <div className="json-tree">
+    <div className="line-container">
+      <span className="toggle-symbol" onClick={toggleState}>
+        {Array.isArray(item.submenu) ? (collapsed ? '[+]' : '[-]') : '•'}
       </span>
+
       {isEditing ? (
         <input
           value={title}
@@ -132,33 +134,46 @@ const JsonTree = ({
           autoFocus
         />
       ) : (
-        <span onDoubleClick={() => setIsEditing(true)}>{title}</span>
-      )}
-      <button onClick={handleDelete} style={{ marginLeft: 8 }}>Del</button>
-      <div style={{ display: 'inline-block', marginLeft: 8 }}>
-        <button onClick={moveUp}>UP</button>
-        <button onClick={moveDown}>DW</button>
-        <button onClick={unindent}>UNI</button>
-        <button onClick={indent}>DEI</button>
-      </div>
-
-      {!collapsed && hasBranch && (
-        <div style={{ marginLeft: 20 }}>
-          {item.submenu.map((_, childIndex) => (
-            <JsonTree
-              key={item.submenu[childIndex].id}
-              index={childIndex}
-              parent={item.submenu}
-              updateParent={updateSubmenu}
-              grandParent={parent}
-              parentIndex={index}
-              updateGrandParent={updateParent}
-            />
-          ))}
+        <div className="title-display" onDoubleClick={() => setIsEditing(true)}>
+          {/* On Double click or use edit item to change name */}
+          <span>{title}</span>
+          <button className="edit-icon" onClick={() => setIsEditing(true)}>
+            <FaPencilAlt />
+          </button>
         </div>
       )}
+      
+      <div className="button-group">
+        <button className="delete-button" onClick={handleDelete}><FaTrash /></button>
+        <button className="move-up-button" onClick={moveUp}><FaArrowUp />
+        </button>
+        <button className="move-down-button" onClick={moveDown}><FaArrowDown />
+        </button>
+        <button className="indent-up-button" onClick={unindent}><FaOutdent />
+        </button>
+        <button className="indent-down-button" onClick={indent}><FaIndent />
+</button>
+      </div>
     </div>
-  );
+      {/* Load using JsonTree component */}
+    {!collapsed && hasBranch && (
+      <div className="submenu">
+        {item.submenu.map((child, childIndex) => (
+          <JsonTree
+            key={item.submenu[childIndex].id}
+            index={childIndex}
+            parent={item.submenu}
+            updateParent={updateSubmenu}
+            grandParent={parent}
+            parentIndex={index}
+            updateGrandParent={updateParent}
+          />
+        ))}
+      </div>
+    )}
+  </div>
+);
+
 };
 
 // Using data from props
@@ -219,7 +234,7 @@ const handleSave = async () => {
           updateParent={updateTree}
         />
       ))}
-      <div style={{ marginTop: 24, display: 'flex', justifyContent: 'center' }}>
+      <div className="edit-json-tree-buttons">
         <button onClick={handleSave}>Save Changes</button>
         <button onClick={handleReset} style={{ marginLeft: 8 }}>Reset to External Data</button>
       </div>
