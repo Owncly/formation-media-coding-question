@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import BottomNav from '../components/BottomNav.js';
 import JsonTree from '../components/JsonTree.js';
-
+import '../styles/MainPages.css';
 export default function Display() {
   // Set initial state 
   const [menuData, setMenuData] = useState(null);
@@ -23,11 +23,13 @@ export default function Display() {
 
   // While loading display wait, and bottumnav
   return (
-    <>
+    <div className="display-page">
       <h1>Display Page</h1>
-      {menuData ? <JsonTree jsonData={menuData} /> : <div>Please Wait, loading...</div>}
+      <div className="json-tree-wrapper">
+        {menuData ? <JsonTree jsonData={menuData} /> : <div className="loading">Please Wait, loading...</div>}
+      </div>
       <BottomNav />
-      
-    </>
+    </div>
   );
+
 }

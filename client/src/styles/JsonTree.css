@@ -1,63 +1,85 @@
-/* JsonTree.css */
-
-.modify-page {
+.display-page {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  height: 100vh; 
-  background-color: #f5f5f5;
+  align-items: flex-start;
   padding: 40px;
+  background-color: #f0f2f5;
+  min-height: 100vh;
   box-sizing: border-box;
+  padding-bottom: 120px;
 }
 
-.modify-page h1 {
+.page-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #2c3e50;
   margin-bottom: 24px;
-  text-align: center;
 }
 
-.edit-json-tree {
-  background-color: #fff;
-  padding: 24px;
-  border-radius: 8px;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
-  min-width: 400px;
-  max-width: 600px;
-  width: 100%;
-
+.json-tree-wrapper {
   flex-grow: 1;
-  overflow-y: auto;
-  overflow-x: hidden;
-  margin-bottom: 120px; /* space for bottom nav */
-}
-
-.edit-json-tree {
-  background-color: #fff;
-  padding: 24px;
-  border-radius: 8px;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
-  min-width: 400px;
-  max-width: 600px;
   width: 100%;
-  
-  /* Scroll-able */
-  max-height: 400px; 
+  max-height: calc(100vh - 200px);
   overflow-y: auto;
-  overflow-x: hidden;
+}
+.json-tree-viewer {
+    font-family: Arial, sans-serif;
+    background-color: #b5bdc5;
+    color: #343a40;
+    margin: 0;
+    padding: 20px;
+    padding-bottom: 100px;
 }
 
-.edit-json-tree::-webkit-scrollbar {
-  width: 8px;
+.json-tree-viewer h3 {
+    color: #1100ff;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    margin-left: 20px;
+
 }
 
-.edit-json-tree::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0.2);
-  border-radius: 4px;
+.json-tree-viewer div {
+    margin: 10px 0;
 }
 
-.edit-json-tree::-webkit-scrollbar-track {
-  background-color: transparent;
+.json-tree-viewer span {
+    cursor: pointer;
+    transition: color 0.3s;
 }
 
-.edit-json-tree {
-  padding-bottom: 80px; 
+
+.json-tree-viewer span:hover {
+    color: #0056b3;
 }
+
+/*  */
+.json-tree-viewer span::before {
+    content: '';
+    display: inline-block;
+    width: 20px; /* space for the indicator */
+    text-align: center;
+}
+
+/*  */
+.json-tree-viewer div > div {
+    margin-left: 20px;
+    padding-left: 10px;
+    border-left: 1px solid #d3d3d3;
+}
+
+/* Style for the plus/minus signs */
+.json-tree-viewer span:before {
+    font-size: 1.2em;
+    line-height: 1.5;
+}
+
+.json-tree-viewer span:before {
+    content: attr(data-icon);
+}
+
+/*  */
+.json-tree-viewer .menu-item {
+    padding: 5px 0;
+}
+
