@@ -5,6 +5,7 @@ import JsonTree from '../components/JsonTree.js';
 export default function Display() {
   // Set initial state 
   const [menuData, setMenuData] = useState(null);
+
   // Awaiting data from backend
   useEffect(() => {
     const fetchMenu = async () => {

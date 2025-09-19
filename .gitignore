@@ -6,7 +6,4 @@ docker-compose.yaml
 .DS_Store
 client/.env
 client/node_modules/
-client/styles/
-client/services
-client/src/components/EditJsonTree.js
 server/package-lock.json

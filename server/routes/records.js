@@ -24,9 +24,8 @@ router.post('/', async (req, res) => {
 
 // standard get for all records
 router.get("/", async (req, res) => {
-let collection = await db.collection("records");
-let results = await db.collection("records").find({}).toArray();
-res.send(results).status(200);
+  let results = await db.collection("records").find({}).toArray();
+  res.send(results).status(200);
 });
 
 // standard get for one record by id
@@ -37,21 +36,18 @@ router.get("/:id", async (req, res) => {
     else res.send(result).status(200);
 });
 
-// standard post to add a record
-router.post("/", async (req, res) => {
-  let collection = await db.collection("records"); 
-    let result = await collection.insertOne(req.body);
-    res.send(result).status(201);
-});
-
 
 router.put('/:id', async (req, res) => {
   try {
     const collection = db.collection('records');
-    const result = await collection.updateOne(
-      { _id: new ObjectId(req.params.id) },
-      { $set: req.body }
-    );
+    const { _id, ...safeBody } = req.body; 
+
+    const result = await collection.replaceOne({ _id: new ObjectId(req.params.id) }, req.body)
+
+    if (result.matchedCount === 0) {
+      return res.status(404).send({ error: 'Record not found' });
+    }
+
     res.status(200).send(result);
   } catch (err) {
     console.error('Update failed:', err);
