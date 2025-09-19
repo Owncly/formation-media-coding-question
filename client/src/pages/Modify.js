@@ -4,7 +4,7 @@ import EditJsonTree from '../components/EditJsonTree';
 import '../styles/JsonTree.css';
 export default function Modify() {
   const [menuData, setMenuData] = useState(null);
-
+  // Grab the data from, database on load
   useEffect(() => {
     const fetchMenu = async () => {
       try {
