@@ -1,6 +1,6 @@
 const internalMenuService = async (menuData) => {
   try {
-    // Step 1: Check for existing records
+    // Check for existing records
     const res = await fetch('/records');
     const existing = await res.json();
 

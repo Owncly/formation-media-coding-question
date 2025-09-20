@@ -1,9 +1,9 @@
 node_modules/
 build/
 dist/
-docker-compose.yaml
 .env
 .DS_Store
 client/.env
 client/node_modules/
 server/package-lock.json
+client/package-lock.json
