@@ -48,12 +48,10 @@
     transition: color 0.3s;
 }
 
-
 .json-tree-viewer span:hover {
     color: #0056b3;
 }
 
-/*  */
 .json-tree-viewer span::before {
     content: '';
     display: inline-block;
@@ -61,7 +59,6 @@
     text-align: center;
 }
 
-/*  */
 .json-tree-viewer div > div {
     margin-left: 20px;
     padding-left: 10px;
@@ -78,7 +75,7 @@
     content: attr(data-icon);
 }
 
-/*  */
+
 .json-tree-viewer .menu-item {
     padding: 5px 0;
 }

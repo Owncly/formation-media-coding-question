@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import BottomNav from '../components/BottomNav.js';
+import { useEffect, useState } from 'react';
+import BottomNav from '../components/BottomNav';
 import EditJsonTree from '../components/EditJsonTree';
-import '../styles/EditJsonTree.css';
 import '../styles/MainPages.css';
+import '../styles/EditJsonTree.css';
+
+
 export default function Modify() {
   const [menuData, setMenuData] = useState(null);
   // Grab the data from, database on load
@@ -23,9 +25,10 @@ export default function Modify() {
   return (
     <>
 
-<div className="modify-page">
+
   <h1>Modify Page</h1>
-  {menuData ? <EditJsonTree jsonData={menuData} /> : <div>Loading menu...</div>}
+<div className="modify-page">
+  {menuData ? <EditJsonTree jsonData={menuData} /> : <div className="loading">Please Wait, loading...</div>}
   <BottomNav />
 </div>
     </>

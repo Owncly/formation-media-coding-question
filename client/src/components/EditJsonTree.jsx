@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import externalMenuService from '../services/externalMenuService';
 import internalMenuService from '../services/internalMenuService';
 import '../styles/EditJsonTree.css';
@@ -23,7 +23,7 @@ function assignIds(elements, prefix = '') {
   });
 }
 
-// To keep the dot and + consistent, we need the update parent and grandparent of the tree to verify behanviour when unindenting 
+// To keep the dot and + consistent, we need the update parent and grandparent of the tree to verify behavior when unindenting 
 const JsonTree = ({
   index,
   parent,
@@ -62,7 +62,7 @@ const JsonTree = ({
     updateParent(updatedParent);
   };
 
-  // Make sure updates are completed across the tree so othwise naming or deleting mismatch
+  // Make sure updates are completed across the tree so otherwise naming or deleting mismatch
   const updateSubmenu = (newSubmenu) => {
     const updatedParent = [...parent];
     updatedParent[index] = { ...item, submenu: newSubmenu };

@@ -1,9 +1,3 @@
-.modify-page h1 {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #333;
-  letter-spacing: 0.5px;
-}
 
 .line-container span,
 .line-container input {
@@ -137,9 +131,10 @@
   display: flex;
   justify-content: center;
   gap: 8px;
+  
 }
 
-/* Delete button styling */
+/*  Button styling */
 .delete-button {
   background-color: #e74c3c;
   color: white;
@@ -158,4 +153,20 @@
 
 .delete-button:active {
   transform: scale(0.95);
+}
+
+.move-up-button:active{
+  transform: scale(0.80);
+}
+
+.move-down-button:active{
+  transform: scale(0.80);
+}
+
+.indent-down-button:active{
+  transform: scale(0.80);
+}
+
+.indent-up-button:active{
+  transform: scale(0.80);
 }
