@@ -7,7 +7,6 @@ const { ObjectId } = mongodb;
 // Database connection
 import db from "../db/connection.js";
 
-
 const router = express.Router();
 
 // Post using api to initially save menu to db
