@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import BottomNav from '../components/BottomNav.js';
-import JsonTree from '../components/JsonTree.js';
+import { useEffect, useState } from 'react';
+import BottomNav from '../components/BottomNav';
+import JsonTree from '../components/JsonTree';
 import '../styles/MainPages.css';
 export default function Display() {
   // Set initial state 
@@ -31,5 +31,4 @@ export default function Display() {
       <BottomNav />
     </div>
   );
-
 }
