@@ -4,15 +4,14 @@ import express from 'express';
 import mongodb from "mongodb";
 const { ObjectId } = mongodb;
 
-// Database connection
-import db from "../db/connection.js";
-
+import { getDb } from '../db/connection.js';
 
 const router = express.Router();
 
 // Post using api to initially save menu to db
 router.post('/', async (req, res) => {
   try {
+    const db = getDb();
     console.log('Received menuData:', req.body);
     const collection = db.collection('records');
     const result = await collection.insertOne(req.body);
@@ -24,14 +23,16 @@ router.post('/', async (req, res) => {
 
 // standard get for all records
 router.get("/", async (req, res) => {
+  const db = getDb();
   let results = await db.collection("records").find({}).toArray();
   res.send(results).status(200);
 });
 
 // standard get for one record by id
 router.get("/:id", async (req, res) => {
+  const db = getDb();
   let collection = await db.collection("records");
-  let result = await collection.findOne({ _id: new ObjectID(req.params.id) });
+  let result = await collection.findOne({ _id: new ObjectId(req.params.id) });
     if (!result) res.send("Not found").status(404);
     else res.send(result).status(200);
 });
@@ -39,6 +40,7 @@ router.get("/:id", async (req, res) => {
 
 router.put('/:id', async (req, res) => {
   try {
+    const db = getDb();
     const collection = db.collection('records');
     const { _id, ...safeBody } = req.body; 
 
@@ -57,9 +59,10 @@ router.put('/:id', async (req, res) => {
 
 // standard delete to delete a record by id
 router.delete("/:id", async (req, res) => {
+   const db = getDb();
     try{
         const collection = await db.collection("records");
-        const query = { _id: new ObjectID(req.params.id) };
+        const query = { _id: new ObjectId(req.params.id) };
         let result = await collection.deleteOne(query);
     
     res.send(result).status(200);
